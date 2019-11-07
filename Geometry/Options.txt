@@ -1,0 +1,13 @@
+#### Lines starting with '#' are comments
+
+## Number of iterations, must be at least 1.
+Iterations  100
+
+## Number of previous iterates used for acceleration. Must be positive.
+AndersonM  5
+
+## Squared spring elasticity, only for physics simulation.
+SquareElasticity 5000000
+
+## Simulation time step, only for physics simulation.
+TimeStep 0.033

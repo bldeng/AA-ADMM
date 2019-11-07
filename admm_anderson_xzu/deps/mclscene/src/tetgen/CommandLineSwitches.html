@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#sec36 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<meta name="generator" content="hevea 2.09">
+<link rel="stylesheet" type="text/css" href="./CommandLineSwitches_files/manual.css">
+<title>Using TetGen</title>
+<style></style></head>
+<body>
+<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual004.html"><img src="./CommandLineSwitches_files/previous_motif.gif" alt="Previous"></a>
+<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/index.html"><img src="./CommandLineSwitches_files/contents_motif.gif" alt="Up"></a>
+<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html"><img src="./CommandLineSwitches_files/next_motif.gif" alt="Next"></a>
+<hr>
+<h2 id="sec34" class="section">4&nbsp;&nbsp;Using TetGen</h2>
+<p>
+<a id="sec:usingtetgen"></a></p><p>This section describes the use of TetGen&nbsp;as a stand-alone program. It
+is invoked from the command line with a set of switches and an input
+file name. Switches are used to control the behavior of TetGen&nbsp;and to
+specify the output files. In correspondence to the different switches,
+TetGen&nbsp;will generate the Delaunay tetrahedralization, or the 
+constrained (Delaunay) tetrahedralization, or the quality conforming
+(Delaunay) mesh, etc.</p>
+<h3 id="sec35" class="subsection">4.1&nbsp;&nbsp;Command Line Syntax</h3>
+<p><a id="hevea_default76"></a>
+<a id="sec:cmdsyntax"></a></p><p>
+<code>tetgen [-pYrq_Aa_miO_S_T_XMwcdzfenvgkJBNEFICQVh] input_file</code>
+</p><p>Underscores indicate that numbers may optionally follow certain switches. Do
+not leave any space between a switch and its numeric parameter. These switches
+are explained in Section&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#sec%3Acmdline">4.2</a>.</p><p><span style="font-family:monospace">input_file</span> can be different files depending on the switches you
+use. If no command line switch is used, it must be a file with extension <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_node"><span style="font-family:monospace">.node</span></a>
+which contains a list of 3d points and the Delaunay tetrahedralization
+of this point set will be generated.</p><p>If the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-pY"><span style="font-family:monospace">-p</span></a><a id="hevea_default77"></a> switch is used, <span style="font-family:monospace">input_file</span> must be a file with one of the following
+extensions: <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_poly"><span style="font-family:monospace">.poly</span></a>, <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_smesh"><span style="font-family:monospace">.smesh</span></a>, <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_off"><span style="font-family:monospace">.off</span></a>, <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_stl"><span style="font-family:monospace">.stl</span></a>, <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_ply"><span style="font-family:monospace">.ply</span></a>, and <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_mesh"><span style="font-family:monospace">.mesh</span></a>, which describes the boundary (a surface mesh) of a
+3d <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Aplcs">piecewise linear complex</a>. The boundary constrained
+(Delaunay) tetrahedralization of this object will be generated. If the
+<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-q"><span style="font-family:monospace">-q</span></a> switch is used simultaneously, a boundary conforming quality tetrahedral mesh
+will be generated.</p><p>If the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-r"><span style="font-family:monospace">-r</span></a><a id="hevea_default78"></a> switch is used, an existing tetrahedral mesh will be read. You
+must supply <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_node"><span style="font-family:monospace">.node</span></a> and <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_ele"><span style="font-family:monospace">.ele</span></a> files which describe the tetrahedral mesh. Optionally a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_face"><span style="font-family:monospace">.face</span></a> and a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_edge"><span style="font-family:monospace">.edge</span></a> file can be supplied which contain the boundary faces and edges of the mesh. 
+<span style="font-family:monospace">input_file</span> can have no file extension. </p><p>If the switch <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-q"><span style="font-family:monospace">-q</span></a><a id="hevea_default79"></a> is applied, the mesh
+will be refined with respect to the new quality measure and variant
+constraints. Optionally, and a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_vol"><span style="font-family:monospace">.vol</span></a>, a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_mtr"><span style="font-family:monospace">.mtr</span></a>, and a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_var"><span style="font-family:monospace">.var</span></a> file can be supplied which contain the mesh element size control information.</p><p>File formats are described in Section&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#sec%3Aff">5</a>.</p>
+<h3 id="sec36" class="subsection">4.2&nbsp;&nbsp;Command Line Switches</h3>
+<p><a id="hevea_default80"></a>
+<a id="sec:cmdline"></a></p><p>An overview of all command line switches
+and a short description follow. These switches are shown by invoking TetGen&nbsp;without any switch and input file. Detailed descriptions of these switches are given in the following subsections.</p><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tbody><tr><td style="text-align:left;white-space:nowrap">&nbsp;</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-pY"><span style="font-family:monospace">-p</span></a></td><td style="text-align:left;white-space:nowrap">Tetrahedralizes a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Aplcs">piecewise linear complex</a> (PLC).</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-pY"><span style="font-family:monospace">-Y</span></a></td><td style="text-align:left;white-space:nowrap">Preserves the input surface mesh (does not modify it).</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-r"><span style="font-family:monospace">-r</span></a></td><td style="text-align:left;white-space:nowrap">Reconstructs a previously generated mesh.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-q"><span style="font-family:monospace">-q</span></a></td><td style="text-align:left;white-space:nowrap">Refines mesh (to improve mesh quality).</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-R"><span style="font-family:monospace">-R</span></a></td><td style="text-align:left;white-space:nowrap">Mesh coarsening (to reduce the mesh elements).</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-A"><span style="font-family:monospace">-A</span></a></td><td style="text-align:left;white-space:nowrap">Assigns attributes to tetrahedra in different regions.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-a"><span style="font-family:monospace">-a</span></a></td><td style="text-align:left;white-space:nowrap">Applies a maximum tetrahedron volume constraint.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-m"><span style="font-family:monospace">-m</span></a></td><td style="text-align:left;white-space:nowrap">Applies a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Ameshadapt">mesh sizing function</a>.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-i"><span style="font-family:monospace">-i</span></a></td><td style="text-align:left;white-space:nowrap">Inserts a list of additional points.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-O"><span style="font-family:monospace">-O</span></a></td><td style="text-align:left;white-space:nowrap">Specifies the level of mesh optimization.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-S"><span style="font-family:monospace">-S</span></a></td><td style="text-align:left;white-space:nowrap">Specifies maximum number of added points.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-T"><span style="font-family:monospace">-T</span></a></td><td style="text-align:left;white-space:nowrap">Sets a tolerance for coplanar test (default 10<sup>&#8722;8</sup>).</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <span style="font-family:monospace">-X</span></td><td style="text-align:left;white-space:nowrap">Suppresses use of exact arithmetic.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <span style="font-family:monospace">-M</span></td><td style="text-align:left;white-space:nowrap">No merge of coplanar facets or very close vertices.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-w"><span style="font-family:monospace">-w</span></a></td><td style="text-align:left;white-space:nowrap">Generates weighted Delaunay (regular) triangulation.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-c"><span style="font-family:monospace">-c</span></a></td><td style="text-align:left;white-space:nowrap">Retains the convex hull of the PLC.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <span style="font-family:monospace">-d</span></td><td style="text-align:left;white-space:nowrap">Detects self-intersections of facets of the PLC.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-z"><span style="font-family:monospace">-z</span></a></td><td style="text-align:left;white-space:nowrap">Numbers all output items starting from zero.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-f"><span style="font-family:monospace">-f</span></a></td><td style="text-align:left;white-space:nowrap">Outputs all faces to <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_face"><span style="font-family:monospace">.face</span></a> file.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-e"><span style="font-family:monospace">-e</span></a></td><td style="text-align:left;white-space:nowrap">Outputs all edges to <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_edge"><span style="font-family:monospace">.edge</span></a> file.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-n"><span style="font-family:monospace">-n</span></a></td><td style="text-align:left;white-space:nowrap">Outputs tetrahedra neighbors to <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_neigh"><span style="font-family:monospace">.neigh</span></a> file.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-v"><span style="font-family:monospace">-v</span></a></td><td style="text-align:left;white-space:nowrap">Outputs Voronoi diagram to files.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <span style="font-family:monospace">-g</span></td><td style="text-align:left;white-space:nowrap">Outputs mesh to <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_mesh"><span style="font-family:monospace">.mesh</span></a> file for viewing by <span style="font-family:monospace">Medit</span>.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <span style="font-family:monospace">-k</span></td><td style="text-align:left;white-space:nowrap">Outputs mesh to <span style="font-family:monospace">.vtk</span> file for viewing by <span style="font-family:monospace">Paraview</span>.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <span style="font-family:monospace">-J</span></td><td style="text-align:left;white-space:nowrap">No jettison of unused vertices from output <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_node"><span style="font-family:monospace">.node</span></a> file.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <span style="font-family:monospace">-B</span></td><td style="text-align:left;white-space:nowrap">Suppresses output of boundary information.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <span style="font-family:monospace">-N</span></td><td style="text-align:left;white-space:nowrap">Suppresses output of <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_node"><span style="font-family:monospace">.node</span></a> file.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <span style="font-family:monospace">-E</span></td><td style="text-align:left;white-space:nowrap">Suppresses output of <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_ele"><span style="font-family:monospace">.ele</span></a> file.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <span style="font-family:monospace">-F</span></td><td style="text-align:left;white-space:nowrap">Suppresses output of <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_face"><span style="font-family:monospace">.face</span></a> and <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_edge"><span style="font-family:monospace">.edge</span></a> file.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-I"><span style="font-family:monospace">-I</span></a></td><td style="text-align:left;white-space:nowrap">Suppresses mesh iteration numbers.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-C"><span style="font-family:monospace">-C</span></a></td><td style="text-align:left;white-space:nowrap">Checks the consistency of the final mesh.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <span style="font-family:monospace">-Q</span></td><td style="text-align:left;white-space:nowrap">Quiet: No terminal output except errors.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-V"><span style="font-family:monospace">-V</span></a></td><td style="text-align:left;white-space:nowrap">Verbose: Detailed information, more terminal output.</td></tr>
+<tr><td style="text-align:left;white-space:nowrap"> <span style="font-family:monospace">-h</span></td><td style="text-align:left;white-space:nowrap">Help: A brief instruction for using TetGen.</td></tr>
+</tbody></table>
+<h4 id="sec37" class="subsubsection">4.2.1&nbsp;&nbsp;Delaunay and weighted Delaunay tetrahedralizations</h4>
+<p><a id="hevea_default81"></a>
+<a id="cmd-w"></a></p><p>Given a set of 3d points or weighted points, TetGen&nbsp;generates the Delaunay tetrahedralization or the weighted Delaunay tetrahedralization of the point set. It can also output the Voronoi diagram or the power diagram. </p><p>Save the set of points in a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_node"><span style="font-family:monospace">.node</span></a> file, e.g., <span style="font-family:monospace">test.node</span>. Run TetGen&nbsp;using the command: </p><p>
+<code>tetgen test.node</code>
+</p><p>This command generates the Delaunay tetrahedralization (DT) of this point set. Below is a screen output of TetGen:</p><pre class="verbatim"><span style="font-size:small">Opening test.node.
+Delaunizing vertices...
+Delaunay seconds:  0.001695
+
+Writing test.1.node.
+Writing test.1.ele.
+Writing test.1.face.
+
+Output seconds:  0.001555
+Total running seconds:  0.003615
+
+Statistics:
+
+  Input points: 100
+
+  Mesh points: 100
+  Mesh tetrahedra: 514
+  Mesh faces: 1057
+  Mesh edges: 642
+  Convex hull faces: 58
+</span></pre><p>Figure&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#fig%3Adt">12</a> shows an example of an input point set (100 vertices) and the generated DT and its convex hull. </p><blockquote class="figure"><div class="center"><div class="center"><hr style="width:80%;height:2"></div>
+<img src="./CommandLineSwitches_files/manual028.png">&nbsp;
+<img src="./CommandLineSwitches_files/manual029.png">&nbsp;
+<img src="./CommandLineSwitches_files/manual030.png">
+<div class="caption"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tbody><tr><td style="vertical-align:top;text-align:left;">Figure 12: From left to right: a set of 100 randomly distributed points in a unit cube, the Delaunay tetrahedralization, and the convex hull of the point set, respectively.</td></tr>
+</tbody></table></div>
+<a id="fig:dt"></a>
+<div class="center"><hr style="width:80%;height:2"></div></div></blockquote><p>The default outputs of TetGen&nbsp;are three files listed in Table&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#tbl%3Adtoutputs">3</a>.</p><blockquote class="table"><div class="center"><div class="center"><hr style="width:80%;height:2"></div>
+<table border="1" style="border-spacing:0;" class="cellpadding1"><tbody><tr><td style="text-align:left;border:solid 1px;white-space:nowrap"> <span style="font-family:monospace">test.1.node</span></td><td style="text-align:left;border:solid 1px;white-space:nowrap">The list of vertices (same as input) of the DT.</td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap"> <span style="font-family:monospace">test.1.ele</span></td><td style="text-align:left;border:solid 1px;white-space:nowrap">The list of tetrahedra of the DT.</td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap"> <span style="font-family:monospace">test.1.face</span></td><td style="text-align:left;border:solid 1px;white-space:nowrap">The list of convex hull faces of the point set.</td></tr>
+</tbody></table>
+<div class="caption"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tbody><tr><td style="vertical-align:top;text-align:left;">Table 3: The default output files of TetGen.</td></tr>
+</tbody></table></div>
+<a id="tbl:dtoutputs"></a>
+<div class="center"><hr style="width:80%;height:2"></div></div></blockquote><p>The set of all faces and edges of the DT can be obtained by adding the output switches <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-f"><span style="font-family:monospace">-f</span></a><a id="hevea_default82"></a> (output all faces) and <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-e"><span style="font-family:monospace">-e</span></a><a id="hevea_default83"></a> (output all edges), respectively. For example, by the following command </p><p>
+<code>tetgen -fe test.node</code>
+</p><p>TetGen&nbsp;will output the four files listed in Table&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#tbl%3Adtoutputs1">4</a>.</p><blockquote class="table"><div class="center"><div class="center"><hr style="width:80%;height:2"></div>
+<table border="1" style="border-spacing:0;" class="cellpadding1"><tbody><tr><td style="text-align:left;border:solid 1px;white-space:nowrap"> <span style="font-family:monospace">test.1.node</span></td><td style="text-align:left;border:solid 1px;white-space:nowrap">The list of vertices (same as input) of the DT.</td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap"> <span style="font-family:monospace">test.1.ele</span></td><td style="text-align:left;border:solid 1px;white-space:nowrap">The list of tetrahedra of the DT.</td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap"> <span style="font-family:monospace">test.1.face</span></td><td style="text-align:left;border:solid 1px;white-space:nowrap">The list of all faces of the DT. </td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap">&nbsp;</td><td style="text-align:left;border:solid 1px;white-space:nowrap">Convex hull faces have a face marker ‘1’.</td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap">&nbsp;</td><td style="text-align:left;border:solid 1px;white-space:nowrap">Interior faces have a face marker ‘0’. </td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap"> <span style="font-family:monospace">test.1.edge</span></td><td style="text-align:left;border:solid 1px;white-space:nowrap">The list of all edges of the DT. </td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap">&nbsp;</td><td style="text-align:left;border:solid 1px;white-space:nowrap">Convex hull edges have an edge marker ‘1’.</td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap">&nbsp;</td><td style="text-align:left;border:solid 1px;white-space:nowrap">Interior edges have an edge marker ‘0’. </td></tr>
+</tbody></table>
+<div class="caption"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tbody><tr><td style="vertical-align:top;text-align:left;">Table 4: The output files by the command: <span style="font-family:monospace">tetgen -fe test.node</span>.</td></tr>
+</tbody></table></div>
+<a id="tbl:dtoutputs1"></a>
+<div class="center"><hr style="width:80%;height:2"></div></div></blockquote><p>The adjacency graph of the list of tetrahedra of the DT can be obtained by adding the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-n"><span style="font-family:monospace">-n</span></a><a id="hevea_default84"></a> switch in the command line. An additional file, <span style="font-family:monospace">test.1.neigh</span>, will be output by TetGen, see file format <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_neigh"><span style="font-family:monospace">.neigh</span></a> for details.<br>
+
+The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-w"><span style="font-family:monospace">-w</span></a><a id="hevea_default85"></a> switch creates a weighted Delaunay tetrahedralization from a set of weighted points. Remember that a weighted point is defined as <span style="font-weight:bold"><span style="font-style:italic">p</span></span>&#8242; = {<span style="font-style:italic">p</span><sub><span style="font-style:italic">x</span></sub>, <span style="font-style:italic">p</span><sub><span style="font-style:italic">y</span></sub>, <span style="font-style:italic">p</span><sub><span style="font-style:italic">z</span></sub>, <span style="font-style:italic">p</span><sub><span style="font-style:italic">x</span></sub><sup>2</sup> + <span style="font-style:italic">p</span><sub><span style="font-style:italic">y</span></sub><sup>2</sup> + <span style="font-style:italic">p</span><sub><span style="font-style:italic">z</span></sub><sup>2</sup> &#8722; <span style="font-style:italic">w</span>} &#8712; &#8477;<sup>4</sup>, where <span style="font-style:italic">w</span> is the weight (a real value) of the point <span style="font-weight:bold"><span style="font-style:italic">p</span></span> = {<span style="font-style:italic">p</span><sub><span style="font-style:italic">x</span></sub>, <span style="font-style:italic">p</span><sub><span style="font-style:italic">y</span></sub>, <span style="font-style:italic">p</span><sub><span style="font-style:italic">z</span></sub>} &#8712; &#8477;<sup>3</sup>&nbsp;[<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual010.html#Edelsbrunner01">7</a>]. </p><p>Save the set of weighted points in a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_node"><span style="font-family:monospace">.node</span></a> file. The points in <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_node"><span style="font-family:monospace">.node</span></a> file must have at least one attribute<a id="hevea_default86"></a>, and the first attribute of each point is its weight. To generate a weighted DT of this point set, run TetGen&nbsp;with the following command:</p><p>
+<code>tetgen -w test.node</code>
+</p><p>The weighted Delaunay tetrahedralization and its convex hull are saved in the files with the same names as is listed in Table&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#tbl%3Adtoutputs">3</a>. Note that some of the points in <span style="font-family:monospace">test.1.node</span> may not belong to any tetrahedron. <br>
+
+The Voronoi diagram or the power diagram of the point set is obtained by taking the dual of the generated Delaunay or weighted Delaunay tetrahedralization, see Figure&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#fig%3As164-dt-vd">13</a> for an example.</p><blockquote class="figure"><div class="center"><div class="center"><hr style="width:80%;height:2"></div>
+<img src="./CommandLineSwitches_files/manual031.png">&nbsp;
+<img src="./CommandLineSwitches_files/manual032.png">
+<div class="caption"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tbody><tr><td style="vertical-align:top;text-align:left;">Figure 13: Left: a set of 164 randomly distributed points in a unit cube. Right: the Delaunay tetrahedralization (shown in black edges) and Voronoi diagram (shown in colored faces).</td></tr>
+</tbody></table></div>
+<a id="fig:s164-dt-vd"></a>
+<div class="center"><hr style="width:80%;height:2"></div></div></blockquote><p>By adding a <span style="font-family:monospace">-v</span><a id="cmd-v"></a><a id="hevea_default87"></a> switch in the command line, TetGen&nbsp;outputs the Voronoi diagram or the power diagram in the four files shown in Table&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#tbl%3Avoronoioutput">5</a>:</p><blockquote class="table"><div class="center"><div class="center"><hr style="width:80%;height:2"></div>
+<table border="1" style="border-spacing:0;" class="cellpadding1"><tbody><tr><td style="text-align:left;border:solid 1px;white-space:nowrap"> <span style="font-family:monospace">test.1.v.node</span></td><td style="text-align:left;border:solid 1px;white-space:nowrap">The list of Voronoi vertices (or orthocenters).</td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap"> <span style="font-family:monospace">test.1.v.edge</span></td><td style="text-align:left;border:solid 1px;white-space:nowrap">The list of Voronoi edges.</td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap"> <span style="font-family:monospace">test.1.v.face</span></td><td style="text-align:left;border:solid 1px;white-space:nowrap">The list of Voronoi faces.</td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap"> <span style="font-family:monospace">test.1.v.cell</span></td><td style="text-align:left;border:solid 1px;white-space:nowrap">The list of Voronoi cells.</td></tr>
+</tbody></table>
+<div class="caption"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tbody><tr><td style="vertical-align:top;text-align:left;">Table 5: The output files for Voronoi or power diagram.</td></tr>
+</tbody></table></div>
+<a id="tbl:voronoioutput"></a>
+<div class="center"><hr style="width:80%;height:2"></div></div></blockquote><p>The <span style="font-family:monospace">.v.node</span> file has the file format as a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_node"><span style="font-family:monospace">.node</span></a> file. The file formats of <span style="font-family:monospace">.v.edge</span>, <span style="font-family:monospace">.v.face</span>, and <span style="font-family:monospace">.v.cell</span> are described in the file format section.</p><p>Note that the switches <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-w"><span style="font-family:monospace">-w</span></a> and <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-v"><span style="font-family:monospace">-v</span></a> are only used for a point set. </p>
+<h4 id="sec38" class="subsubsection">4.2.2&nbsp;&nbsp;Boundary conformity and recovery (-p, -Y)</h4>
+<p>
+<a id="cmd-pY"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-pY"><span style="font-family:monospace">-p</span></a><a id="hevea_default88"></a> switch reads a boundary description (a surface mesh) of a 3d <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Aplcs">piecewise linear complex</a> (PLC) stored in file <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_poly"><span style="font-family:monospace">.poly</span></a> or 
+<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_smesh"><span style="font-family:monospace">.smesh</span></a> and generates a tetrahedral mesh of the PLC. </p><p>By default, TetGen&nbsp;generates a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Acdt">constrained Delaunay tetrahedralization</a> (CDT) of the PLC. 
+Here is an example of creating a CDT of the PLC named <span style="font-family:monospace">cami1a.poly</span> (Figure&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#fig%3Aplccdt">14</a> left). Run the following command:</p><p>
+<code>tetgen -p cami1a.poly</code>
+</p><p>This will produce the CDT of the PLC shown in Figure&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#fig%3Aplccdt">14</a> middle. 
+Below is a screen output of TetGen:</p><pre class="verbatim"><span style="font-size:small">Opening cami1a.poly.
+Opening cami1a.node.
+Delaunizing vertices...
+Delaunay seconds:  0.019862
+Creating surface mesh ...
+Surface mesh seconds:  0.002374
+Constrained Delaunay...
+Constrained Delaunay seconds:  0.012435
+Removing exterior tetrahedra ...
+Exterior tets removal seconds:  0.000783
+Optimizing mesh...
+Optimization seconds:  0.000662
+
+Writing cami1a.1.node.
+Writing cami1a.1.ele.
+Writing cami1a.1.face.
+Writing cami1a.1.edge.
+
+Output seconds:  0.003398
+Total running seconds:  0.039744
+
+Statistics:
+
+  Input points: 460
+  Input facets: 884
+  Input segments: 690
+  Input holes: 0
+  Input regions: 0
+
+  Mesh points: 542
+  Mesh tetrahedra: 1678
+  Mesh faces: 3904
+  Mesh faces on facets: 1118
+  Mesh edges on segments: 772
+  Steiner points on segments:  82
+</span></pre><p>From the mesh statistics of the output (the last line), we can see that TetGen&nbsp;added 82 <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Asteinerpoints">Steiner points</a> on the segments of the PLC.</p><p>If the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-pY"><span style="font-family:monospace">-Y</span></a><a id="hevea_default89"></a> switch is used simultaneously, the input boundary edges and faces of the PLC are preserved in the generated tetrahedral mesh. <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Asteinerpoints">Steiner points</a> (if there exists any) appear only in the interior space of the PLC. For example, run the following command:</p><p>
+<code>tetgen -pY cami1a.poly</code>
+</p><p>This will produce a tetrahedral mesh of the PLC shown in Figure&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#fig%3Aplccdt">14</a> right. 
+Below is a screen output of TetGen:</p><pre class="verbatim"><span style="font-size:small">Opening cami1a.poly.
+Opening cami1a.node.
+Delaunizing vertices...
+Delaunay seconds:  0.016072
+Creating surface mesh ...
+Surface mesh seconds:  0.001333
+Recovering boundaries...
+Boundary recovery seconds:  0.0432
+Removing exterior tetrahedra ...
+Exterior tets removal seconds:  0.001152
+Suppressing Steiner points ...
+Steiner suppression seconds:  0.001164
+Recovering Delaunayness...
+Delaunay recovery seconds:  0.016093
+Optimizing mesh...
+Optimization seconds:  0.004006
+Jettisoning redundant points.
+
+Writing cami1a.1.node.
+Writing cami1a.1.ele.
+Writing cami1a.1.face.
+Writing cami1a.1.edge.
+
+Output seconds:  0.003188
+Total running seconds:  0.086466
+
+Statistics:
+
+  Input points: 460
+  Input facets: 884
+  Input segments: 1349
+  Input holes: 0
+  Input regions: 0
+
+  Mesh points: 461
+  Mesh tetrahedra: 1516
+  Mesh faces: 3498
+  Mesh faces on facets: 954
+  Mesh edges on segments: 1349
+  Steiner points inside domain: 1
+</span></pre><p>From the mesh statistics of the output (the last line), we can see that TetGen&nbsp;only added 1 <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Asteinerpoints">Steiner point</a> in the interior of the PLC. The input facets and segments are preserved. </p><blockquote class="figure"><div class="center"><div class="center"><hr style="width:80%;height:2"></div>
+<img src="./CommandLineSwitches_files/manual033.png">&nbsp;
+<img src="./CommandLineSwitches_files/manual034.png">&nbsp;
+<img src="./CommandLineSwitches_files/manual035.png">
+<div class="caption"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tbody><tr><td style="vertical-align:top;text-align:left;">Figure 14: An input PLC (<span style="font-family:monospace">cami1a.poly</span>, left), the generated Steiner CDT (middle, <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-pY"><span style="font-family:monospace">-p</span></a> switch) in which <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Asteinerpoints">Steiner points</a> are located on the boundary edges of the PLC, and a constrained tetrahedralization (right, <span style="font-family:monospace">-pY</span> switch) in which <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Asteinerpoints">Steiner points</a> lie in the interior of the PLC.</td></tr>
+</tbody></table></div>
+<a id="fig:plccdt"></a>
+<div class="center"><hr style="width:80%;height:2"></div></div></blockquote><p>The default outputs of TetGen&nbsp;are four files listed in Table&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#tbl%3Acdtoutputs">6</a>:</p><blockquote class="table"><div class="center"><div class="center"><hr style="width:80%;height:2"></div>
+<table border="1" style="border-spacing:0;" class="cellpadding1"><tbody><tr><td style="text-align:left;border:solid 1px;white-space:nowrap"> <span style="font-family:monospace">cami1a.1.node</span></td><td style="text-align:left;border:solid 1px;white-space:nowrap">The list of vertices (including Steiner points) of the CDT.</td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap"> <span style="font-family:monospace">cami1a.1.ele</span></td><td style="text-align:left;border:solid 1px;white-space:nowrap">The list of tetrahedra of the CDT.</td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap"> <span style="font-family:monospace">cami1a.1.face</span></td><td style="text-align:left;border:solid 1px;white-space:nowrap">The list of boundary faces of the CDT.</td></tr>
+<tr><td style="text-align:left;border:solid 1px;white-space:nowrap"> <span style="font-family:monospace">cami1a.1.edge</span></td><td style="text-align:left;border:solid 1px;white-space:nowrap">The list of boundary edges of the CDT.</td></tr>
+</tbody></table>
+<div class="caption"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tbody><tr><td style="vertical-align:top;text-align:left;">Table 6: The output files by command: <span style="font-family:monospace">tetgen -p cami1a.poly</span></td></tr>
+</tbody></table></div>
+<a id="tbl:cdtoutputs"></a>
+<div class="center"><hr style="width:80%;height:2"></div></div></blockquote><p>Other output switches are available by adding the switches: <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-f"><span style="font-family:monospace">-f</span></a><a id="hevea_default90"></a> (output all faces including interior faces), <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-e"><span style="font-family:monospace">-e</span></a><a id="hevea_default91"></a> (output all edges including interior edges), and <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-n"><span style="font-family:monospace">-n</span></a><a id="hevea_default92"></a> (output the adjacency graph of the tetrahedra). </p>
+<h4 id="sec39" class="subsubsection">4.2.3&nbsp;&nbsp;Quality mesh generation (-q)</h4>
+<p><a id="hevea_default93"></a>
+<a id="cmd-q"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-q"><span style="font-family:monospace">-q</span></a><a id="hevea_default94"></a> switch adds new points to improve the mesh quality. It can be used together with <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-pY"><span style="font-family:monospace">-p</span></a><a id="hevea_default95"></a> (to refine a CDT), or <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-r"><span style="font-family:monospace">-r</span></a><a id="hevea_default96"></a> (to refine a previously generated mesh), <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-a"><span style="font-family:monospace">-a</span></a><a id="hevea_default97"></a>, or <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-m"><span style="font-family:monospace">-m</span></a><a id="hevea_default98"></a> (to conform to a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Ameshadapt">mesh sizing function</a>).</p><p>TetGen&nbsp;enforces two quality constraints on tetrahedra: a maximum radius-edge ratio bound and a minimum dihedral angle bound. By default, these two constraints are 2.0 and 0 degrees, respectively. 
+These quality constraints may be specified after the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-q"><span style="font-family:monospace">-q</span></a>. The two constraints are separated by a slash ‘/’ (or ‘,’):
+</p><ul class="itemize"><li class="li-itemize">
+the first constraint is the maximum allowable radius-edge ratio, default is 2.0; and
+</li><li class="li-itemize">the second constraint is the minimum allowable dihedral angle, default is 0 (degree); 
+</li></ul><p>
+of any tetrahedron. For example, <span style="font-family:monospace">-q1.2</span> specifies a maximum radius-edge ratio of 1.2; <span style="font-family:monospace">-q1.2/10</span> specifies the same plus a minimum dihedral angle of 10 degrees. <span style="font-family:monospace">-q/7</span> specifies the default radius-edge ratio bound of 2 and a dihedral angle bound of 7 degrees. </p><p>For example, the following command uses the default quality constraints. It is equivalent to <span style="font-family:monospace">-pq2.0/0</span>.</p><p>
+<code>tetgen -pq thepart.smesh</code>
+</p><p>The screen output of the command line is shown below. Figure&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#fig%3Aqualmesh">15</a> illustrates three quality tetrahedral meshes of a PLC generated by applying different radius-edge ratio bounds. </p><pre class="verbatim"><span style="font-size:small">Opening thepart.smesh.
+Opening thepart.node.
+Delaunizing vertices...
+Delaunay seconds:  0.03408
+Creating surface mesh ...
+Surface mesh seconds:  0.004497
+Constrained Delaunay...
+Constrained Delaunay seconds:  0.025309
+Removing exterior tetrahedra ...
+Exterior tets removal seconds:  0.001419
+Refining mesh...
+Refinement seconds:  0.489247
+Optimizing mesh...
+Optimization seconds:  0.014569
+
+Writing thepart.1.node.
+Writing thepart.1.ele.
+Writing thepart.1.face.
+Writing thepart.1.edge.
+
+Output seconds:  0.048593
+Total running seconds:  0.618028
+
+Statistics:
+
+  Input points: 994
+  Input facets: 1995
+  Input segments: 1491
+  Input holes: 0
+  Input regions: 0
+
+  Mesh points: 8029
+  Mesh tetrahedra: 33773
+  Mesh faces: 73092
+  Mesh faces on facets: 11092
+  Mesh edges on segments: 5143
+  Steiner points inside domain: 2485
+  Steiner points on facets:  898
+  Steiner points on segments:  3652
+</span></pre><blockquote class="figure"><div class="center"><div class="center"><hr style="width:80%;height:2"></div>
+<img src="./CommandLineSwitches_files/manual036.png">&nbsp;
+<img src="./CommandLineSwitches_files/manual037.png">&nbsp;
+<img src="./CommandLineSwitches_files/manual038.png">
+<div class="caption"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tbody><tr><td style="vertical-align:top;text-align:left;">Figure 15: The quality tetrahedral meshes of a PLC (<span style="font-family:monospace">thepart.smesh</span>) generated by the commands: <span style="font-family:monospace">-pq2/0</span>, <span style="font-family:monospace">-pq1.4/0</span>, and <span style="font-family:monospace">-pq1.1/0</span></td></tr>
+</tbody></table></div>.
+<a id="fig:qualmesh"></a>
+<div class="center"><hr style="width:80%;height:2"></div></div></blockquote>
+<h4 id="sec40" class="paragraph">Remarks</h4>
+<ul class="itemize"><li class="li-itemize">The default output files (four files) have the same names as those in Table&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#tbl%3Acdtoutputs">6</a>.</li><li class="li-itemize">Adding a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-V"><span style="font-family:monospace">-V</span></a><a id="hevea_default99"></a> switch in the command line, TetGen&nbsp;will print a mesh quality report (aspect ratios, radius-edge ratios, dihedral angles) of the generated tetrahedral mesh on the screen, see Section&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-V">4.2.11</a>.</li><li class="li-itemize">If there are no sharp features<a id="hevea_default100"></a> in the input PLC, the Delaunay refinement algorithm used in TetGen&nbsp;is guaranteed to terminate successfully with a radius-edge ratio bound no smaller than 2.0, and with no bound on the minimum dihedral angle. In practice, the algorithm behaves much better, e.g., it usually succeeds for a radius-edge ratio of 1.2 and a minimum dihedral angle of 18 degrees. </li><li class="li-itemize">If there are sharp features in the PLC, TetGen&nbsp;will ensure the desired quality constraints on most of the tetrahedra, but leave some bad-quality tetrahedra in the final mesh. Usually, they are near the sharp features.
+</li></ul>
+<h4 id="sec41" class="subsubsection">4.2.4&nbsp;&nbsp;Adaptive mesh generation (-a, -m)</h4>
+<p><a id="hevea_default101"></a></p><p>TetGen&nbsp;supports several ways of generating adaptive tetrahedral meshes. They have been described already in Section&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Ameshadapt">1.2.6</a>. </p>
+<h4 id="sec42" class="paragraph">Impose volume constraints (-a)</h4>
+<p><a id="hevea_default102"></a>
+<a id="cmd-a"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-a"><span style="font-family:monospace">-a</span></a> switch<a id="hevea_default103"></a> is used in mesh refinement, i.e., together with <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-q"><span style="font-family:monospace">-q</span></a><a id="hevea_default104"></a>. It imposes a maximum volume constraint on all tetrahedra. If a number follows the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-a"><span style="font-family:monospace">-a</span></a>, no tetrahedra is generated whose volume is larger than that number. 
+See Figure&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#fig%3Ats80305">18</a> for an example.</p><ul class="itemize"><li class="li-itemize">One can impose both a fixed volume constraint and a varying volume constraint for some sub-regions (defined in <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_poly"><span style="font-family:monospace">.poly</span></a> or <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_smesh"><span style="font-family:monospace">.smesh</span></a> file) by invoking the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-a"><span style="font-family:monospace">-a</span></a> switch twice, once with and once without a number following. Each volume specified may include a decimal point.</li><li class="li-itemize">If no number is specified and the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-r"><span style="font-family:monospace">-r</span></a> switch<a id="hevea_default105"></a> is used, a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_vol"><span style="font-family:monospace">.vol</span></a><a id="hevea_default106"></a> file is expected, which contains a separate volume constraint for each tetrahedron. It is useful for refining a finite element or finite volume mesh based on a posteriori error estimates.</li></ul>
+<h4 id="sec43" class="paragraph">Impose facet area and segment length constraints</h4>
+<p><a id="hevea_default107"></a><a id="hevea_default108"></a></p><p>TetGen&nbsp;also supports other constraints such as the constraint of maximum face area and the constraint of maximum edge length imposed on facets and segments of the PLC, respectively. </p><p>Figure&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#fig%3Acube-e-var">16</a> shows two examples of the results of applying constraints on a facet and a segment, respectively.</p><blockquote class="figure"><div class="center"><div class="center"><hr style="width:80%;height:2"></div>
+<img src="./CommandLineSwitches_files/manual039.png">
+<img src="./CommandLineSwitches_files/manual040.png">
+<div class="caption"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tbody><tr><td style="vertical-align:top;text-align:left;">Figure 16: Examples of applying facet and segment constraints (<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_var"><span style="font-family:monospace">.var</span></a> file).</td></tr>
+</tbody></table></div>
+<a id="fig:cube-e-var"></a>
+<div class="center"><hr style="width:80%;height:2"></div></div></blockquote><p>These constraints are imposed by using a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_var"><span style="font-family:monospace">.var</span></a> file<a id="hevea_default109"></a> (Section&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_var">5.2.9</a>). </p>
+<h4 id="sec44" class="paragraph">Apply a mesh sizing function (-m)</h4>
+<p><a id="hevea_default110"></a>
+<a id="cmd-m"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-m"><span style="font-family:monospace">-m</span></a> switch<a id="hevea_default111"></a> is used in mesh refinement, i.e., together with the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-q"><span style="font-family:monospace">-q</span></a> switch. It applies a user-defined <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Ameshadapt">mesh sizing function</a> which specifies the desired edge lengths in the final mesh. It aims to create an adaptive mesh whose edge lengths are conforming to this function. At the moment, only isotropic <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Ameshadapt">mesh sizing functions</a> are supported.</p><p>TetGen&nbsp;assumes that the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Ameshadapt">mesh sizing function</a> is specified on a set of discrete points whose convex hull covers the mesh domain (i.e., the underlying space of the PLC). The mesh element size at any point in the domain is automatically computed by a linear interpolation from its adjacent points.</p><p>When the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-m"><span style="font-family:monospace">-m</span></a> switch is used, TetGen&nbsp;will read a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_mtr"><span style="font-family:monospace">.mtr</span></a> file<a id="hevea_default112"></a>, which stores the nodal mesh element size, i.e., the desired edge length at the location of the node in the mesh domain. 
+There are two possible ways to specify the sizing function. 
+</p><ul class="itemize"><li class="li-itemize">
+The mesh element size is directly defined on the nodes of the input PLC (<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-pY"><span style="font-family:monospace">-p</span></a> switch) or the nodes of the input mesh (<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-r"><span style="font-family:monospace">-r</span></a> switch). In this case, its file name is <span style="font-family:monospace">xxx.mtr</span>, where <span style="font-family:monospace">xxx</span> is the base file name of the input PLC or the input mesh, see Figure&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#fig%3AL-shaped">17</a> for an example.
+</li><li class="li-itemize">The mesh element size is defined on the nodes of a background mesh. In this case, there is a background mesh given by the files <span style="font-family:monospace">xxx.b.node</span>, <span style="font-family:monospace">xxx.b.ele</span>, and the mesh element size file <span style="font-family:monospace">xxx.b.mtr</span>.
+</li></ul><blockquote class="figure"><div class="center"><div class="center"><hr style="width:80%;height:2"></div>
+<img src="./CommandLineSwitches_files/manual041.png">&nbsp;
+<img src="./CommandLineSwitches_files/manual042.png">&nbsp;
+<img src="./CommandLineSwitches_files/manual043.png">
+<div class="caption"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tbody><tr><td style="vertical-align:top;text-align:left;">Figure 17: The tetrahedral meshes of a PLC (<span style="font-family:monospace">L.smesh</span>) generated by the commands: <span style="font-family:monospace">-pqm</span>. A sizing function (<span style="font-family:monospace">L.mtr</span>) was applied on the nodes of the PLC. Both input files are found in Section&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_mtr">5.2.8</a>.</td></tr>
+</tbody></table></div>.
+<a id="fig:L-shaped"></a>
+<div class="center"><hr style="width:80%;height:2"></div></div></blockquote>
+<h4 id="sec45" class="subsubsection">4.2.5&nbsp;&nbsp;Reconstructing a tetrahedral mesh (-r)</h4>
+<p><a id="hevea_default113"></a>
+<a id="cmd-r"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-r"><span style="font-family:monospace">-r</span></a> switch<a id="hevea_default114"></a> reconstructs an existing tetrahedral mesh. Usually, the purpose of using this switch is to refine the mesh to improve its quality, i.e., to use it together with the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-q"><span style="font-family:monospace">-q</span></a> switch. Other usages of the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-r"><span style="font-family:monospace">-r</span></a> switch are possible, such as inserting additional points (<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-i"><span style="font-family:monospace">-i</span></a> switch<a id="hevea_default115"></a>), mesh adaptation (<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-m"><span style="font-family:monospace">-m</span></a> switch<a id="hevea_default116"></a>), and linear function interpolation (<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-m"><span style="font-family:monospace">-m</span></a> switch plus a background mesh).</p><ul class="itemize"><li class="li-itemize">
+The tetrahedral mesh is read from a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_node"><span style="font-family:monospace">.node</span></a> and an <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_ele"><span style="font-family:monospace">.ele</span></a> file. These two files must be supplied.</li><li class="li-itemize">If a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_face"><span style="font-family:monospace">.face</span></a> file exists, TetGen&nbsp;will read it and use it to find boundary faces in the tetrahedral mesh. Note: only those faces with a non-zero <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#sec%3Aboundarymarkers">boundary marker</a> are regarded as boundary faces. In either case, TetGen&nbsp;will automatically identify the faces on the exterior of the mesh domain and regard them as boundary faces. Interior boundary faces are also identified by comparing the attributes of two adjacent tetrahedra. </li><li class="li-itemize">If an <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_edge"><span style="font-family:monospace">.edge</span></a> file exists, TetGen&nbsp;will read it and use it to find boundary edges in the mesh. Note: only those edges with a non-zero <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#sec%3Aboundarymarkers">boundary marker</a> are regarded as boundary edges. TetGen&nbsp;will also automatically identify boundary edges from the identified boundary faces. </li><li class="li-itemize">The reconstructed mesh is distinguished from its origin with a different iteration number.
+For example, <span style="font-family:monospace">tetgen -r xxx.1</span> reads the mesh in files <span style="font-family:monospace">xxx.1.node</span>, <span style="font-family:monospace">xxx.1.ele</span> and possibly <span style="font-family:monospace">xxx.1.face</span> and <span style="font-family:monospace">xxx.1.edge</span> if they exist; reconstructs the mesh; outputs it into three files <span style="font-family:monospace">xxx.2.node</span>, <span style="font-family:monospace">xxx.2.ele</span>, <span style="font-family:monospace">xxx.2.face</span>, and <span style="font-family:monospace">xxx.2.edge</span>. Now, <span style="font-family:monospace">xxx.2</span> can be used as input in the above command, the result is another mesh saved in files <span style="font-family:monospace">xxx.3.node</span>, and so on. Mesh iteration numbers allow you to create a sequence of successively finer meshes<a id="hevea_default117"></a>.</li><li class="li-itemize"><a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-r"><span style="font-family:monospace">-r</span></a> should not be used together with the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-I"><span style="font-family:monospace">-I</span></a><a id="hevea_default118"></a>.
+</li></ul>
+<h4 id="sec46" class="subsubsection">4.2.6&nbsp;&nbsp;Mesh optimization (-O)</h4>
+<p><a id="hevea_default119"></a>
+<a id="cmd-O"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-O"><span style="font-family:monospace">-O</span></a> switch<a id="hevea_default120"></a> specifies a mesh optimization level and chooses the operations. Both are integers and are separated by a slash ‘/’.</p><p>The mesh optimization level<a id="hevea_default121"></a> is an integer ranged from 0 to 10, where 0 means no mesh optimization is executed. The larger the level is, the more mesh optimization iterations will be performed, and TetGen&nbsp;may run very slow. Default the mesh optimization level is 2.</p><p>There are three local operations<a id="hevea_default122"></a> available in TetGen&nbsp;for optimizing the mesh, which are:
+</p><ul class="itemize"><li class="li-itemize">
+Edge/face flips.
+</li><li class="li-itemize">Vertex smoothing.
+</li><li class="li-itemize">Vertex insertion/Deletion.
+</li></ul><p>
+The integer for choosing operations is ranged from 0 to 7. Here 0 means no operation is chosen (hence no mesh optimization will be done). Each operation is enabled/disabled by setting the corresponding bit in this integer. 
+</p><ul class="itemize"><li class="li-itemize">
+The 1st bit (the least significant bit) enables/disables edge/face flips.
+</li><li class="li-itemize">The 2nd bit enables/disables vertex smoothing.
+</li><li class="li-itemize">The 3rd bit enables/disables vertex insertion/deletion. 
+</li></ul><p>
+The default is 7, i.e., all of these three operations are enabled. </p><p>For examples, the switch <span style="font-family:monospace">-O2/7</span> specifies the optimization level 2 and uses all optimizing operations. These are the default switches in TetGen. The switch <span style="font-family:monospace">-O/1</span> chooses only the edge/face flip operation and uses the default optimization level.</p>
+<h4 id="sec47" class="paragraph">The following switch is temporary (maybe changed in the future)</h4>
+<p>The current objective function to be optimized by TetGen&nbsp;is to reduce the maximum dihedral angle of the tetrahedra. The default value is 165 degree. One can set this value after the <span style="font-family:monospace">-o/</span>. For example, <span style="font-family:monospace">-o/150</span> sets the maximum dihedral angle to be 150 degree. </p>
+<h4 id="sec48" class="subsubsection">4.2.7&nbsp;&nbsp;Mesh coarsening (-R)</h4>
+<p><a id="hevea_default123"></a>
+<a id="cmd-R"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-R"><span style="font-family:monospace">-R</span></a> switch<a id="hevea_default124"></a> indicates that some vertices of an existing tetrahedral mesh are to be removed. TetGen&nbsp;provides two ways to indicate those vertices to be removed.</p><ul class="itemize"><li class="li-itemize">
+Vertices whose <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#sec%3Aboundarymarkers">boundary markers</a> (see <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_node"><span style="font-family:monospace">.node</span></a> file format) are ‘-1’ are to be removed.
+</li><li class="li-itemize">When a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Ameshadapt">mesh sizing function</a> is supplied (<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-m"><span style="font-family:monospace">-m</span></a> switch), vertices whose mesh element sizes are too large are to be removed.
+</li></ul><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-R"><span style="font-family:monospace">-R</span></a> switch only removes vertices which can be removed. In particular, such vertices lie in the interior of the domain, or vertices lying in the interior of a facet or a segment. Note that this switch does not guarantee that all the marked vertices are successfully removed. </p><p>Once the mesh has been coarsened, the mesh quality may decrease. You may use the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-q"><span style="font-family:monospace">-q</span></a> switch<a id="hevea_default125"></a> together with the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-R"><span style="font-family:monospace">-R</span></a> switch. It will trigger the mesh improvement algorithm of TetGen&nbsp;to improve the mesh quality after the mesh coarsening.</p>
+<h4 id="sec49" class="subsubsection">4.2.8&nbsp;&nbsp;Inserting additional points (-i)</h4>
+<p>
+<a id="cmd-i"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-i"><span style="font-family:monospace">-i</span></a> switch<a id="hevea_default126"></a> indicates that a list of additional points is going to be inserted into an existing tetrahedral mesh. The list of additional nodes is read from files <span style="font-family:monospace">xxx.a.node</span>, where xxx stands for the input file name (i.e., <span style="font-family:monospace">xxx.poly</span> or <span style="font-family:monospace">xxx.smesh</span>, or <span style="font-family:monospace">xxx.ele</span>, ...). This switch is useful for refining a finite element or finite volume mesh using a list of user-defined points. </p><ul class="itemize"><li class="li-itemize">
+Points which lie in the exterior of the mesh domain are simply discarded.
+</li><li class="li-itemize">TetGen&nbsp;uses a relative tolerance (set by <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-T"><span style="font-family:monospace">-T</span></a> switch<a id="hevea_default127"></a>) to check whether a point lies on the domain boundary or not, default it is 10<sup>&#8722;8</sup>.
+</li></ul>
+<h4 id="sec50" class="subsubsection">4.2.9&nbsp;&nbsp;Assigning region attributes (-A)</h4>
+<p><a id="hevea_default128"></a>
+<a id="cmd-A"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-A"><span style="font-family:monospace">-A</span></a> switch<a id="hevea_default129"></a> assigns an additional attribute (an integer number) to each
+tetrahedron that identifies to what facet-bounded region each tetrahedron belongs. In the output mesh, all tetrahedra in the same region will get a corresponding non-zero attribute. </p><blockquote class="figure"><div class="center"><div class="center"><hr style="width:80%;height:2"></div>
+<img src="./CommandLineSwitches_files/manual044.png">&nbsp;
+<img src="./CommandLineSwitches_files/manual045.png">
+<div class="caption"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tbody><tr><td style="vertical-align:top;text-align:left;">Figure 18: The tetrahedral meshes of a PLC (<span style="font-family:monospace">ts80305_nd32_cell834.off</span>) generated by the commands: <span style="font-family:monospace">-pqAa1e-12</span></td></tr>
+</tbody></table></div>.
+<a id="fig:ts80305"></a>
+<div class="center"><hr style="width:80%;height:2"></div></div></blockquote><p>Figure&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#fig%3Ats80305">18</a> shows an example of tetrahedral meshes of a PLC which contains several sub-domains.</p><ul class="itemize"><li class="li-itemize">
+A region attribute is an integer which can be either positive or negative. It must not be a zero, which is used for the exterior of the PLC.</li><li class="li-itemize">User-defined attributes are assigned to regions by the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_poly"><span style="font-family:monospace">.poly</span></a> or <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_smesh"><span style="font-family:monospace">.smesh</span></a> file (in the region section). If a region is not explicitly marked by the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_poly"><span style="font-family:monospace">.poly</span></a> file or <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_smesh"><span style="font-family:monospace">.smesh</span></a> file, tetrahedra in that region are automatically assigned a non-zero attribute. </li><li class="li-itemize">By default, the region attributes are numbered from 1, 2, 3, &#8943;. If there are user-assigned region attributes (by the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_poly"><span style="font-family:monospace">.poly</span></a> or <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_smesh"><span style="font-family:monospace">.smesh</span></a> file), the region attributes are shifted by a number <span style="font-style:italic">i</span>, i.e., <span style="font-style:italic">i</span>+1, <span style="font-style:italic">i</span>+2, <span style="font-style:italic">i</span>+3, &#8943;, where <span style="font-style:italic">i</span> is either 0 or the maximum integer of the user-assigned region attributes.</li><li class="li-itemize">The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-A"><span style="font-family:monospace">-A</span></a> switch has an effect only if the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-pY"><span style="font-family:monospace">-p</span></a> switch is used and the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-r"><span style="font-family:monospace">-r</span></a> switch
+is not.
+</li></ul>
+<h4 id="sec51" class="subsubsection">4.2.10&nbsp;&nbsp;Mesh output switches (-f, -e, -n, -z, -o2)</h4>
+<p>TetGen&nbsp;provides various switches to output its mesh. They are summarized below.</p>
+<h4 id="sec52" class="paragraph">-f</h4>
+<p>
+<a id="cmd-f"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-f"><span style="font-family:monospace">-f</span></a> switch<a id="hevea_default130"></a> outputs all triangular faces (including interior faces) of the mesh into a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_face"><span style="font-family:monospace">.face</span></a> file. Without <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-f"><span style="font-family:monospace">-f</span></a>, only the boundary faces or the convex hull faces are output.</p><p>In the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_face"><span style="font-family:monospace">.face</span></a> file, interior faces and boundary (or convex hull) faces are distinguished by their <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#sec%3Aboundarymarkers">boundary markers</a>. Each interior face has a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#sec%3Aboundarymarkers">boundary marker</a> ‘0’. A non-zero <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#sec%3Aboundarymarkers">boundary marker</a> means a boundary or convex hull face.</p>
+<h4 id="sec53" class="paragraph">-e</h4>
+<p>
+<a id="cmd-e"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-e"><span style="font-family:monospace">-e</span></a> switch<a id="hevea_default131"></a> outputs all mesh edges (including interior edges) of the mesh into a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_edge"><span style="font-family:monospace">.edge</span></a> file. Without <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-e"><span style="font-family:monospace">-e</span></a>, only the boundary edges are output.</p><p>In the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_edge"><span style="font-family:monospace">.edge</span></a> file, interior edges and boundary edges are distinguished by their <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#sec%3Aboundarymarkers">boundary markers</a>. Each interior edge has a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#sec%3Aboundarymarkers">boundary marker</a> ‘0’. A non-zero <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#sec%3Aboundarymarkers">boundary marker</a> means a boundary edge.</p>
+<h4 id="sec54" class="paragraph">-n</h4>
+<p>
+<a id="cmd-n"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-n"><span style="font-family:monospace">-n</span></a> switch<a id="hevea_default132"></a> outputs the neighboring tetrahedra to a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_neigh"><span style="font-family:monospace">.neigh</span></a> file. Each tetrahedron has four neighbors. The first neighbor of this tetrahedron is opposite to the first of its corner, and so on. The neighbors are given by their indices in the corresponding <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_ele"><span style="font-family:monospace">.ele</span></a> file. A ‘-1’ indicates that there is no neighbor at this face of the tetrahedron.</p><p>If the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-n"><span style="font-family:monospace">-nn</span></a> switch is used, TetGen&nbsp;also outputs the neighboring tetrahedra to each face of the mesh in the corresponding <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_face"><span style="font-family:monospace">.face</span></a> file.</p>
+<h4 id="sec55" class="paragraph">-z</h4>
+<p>
+<a id="cmd-z"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-z"><span style="font-family:monospace">-z</span></a> switch<a id="hevea_default133"></a> numbers all output items starting from zero. This switch is
+useful in case of calling TetGen&nbsp;from another program.</p>
+<h4 id="sec56" class="paragraph">-o2</h4>
+<p> 
+<a id="cmd-o2"></a></p><p>With the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-o2"><span style="font-family:monospace">-o2</span></a> switch<a id="hevea_default134"></a>, TetGen&nbsp;will output the tetrahedral mesh with quadratic elements which have 10 nodes per tetrahedron, 6 nodes per triangular face, and 3 nodes per edge. The positions of these extra nodes in each element is shown in Figure&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#fig%3A10-nodes">20</a>.</p>
+<h4 id="sec57" class="subsubsection">4.2.11&nbsp;&nbsp;Mesh statistics (-V)</h4>
+<p><a id="hevea_default135"></a>
+<a id="cmd-V"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-V"><span style="font-family:monospace">-V</span></a><a id="hevea_default136"></a> switch gives detailed information about what TetGen&nbsp;is doing. More ‘V’s are increasing the amount of detail. </p><p>Specifically, <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-V"><span style="font-family:monospace">-V</span></a> gives information on algorithmic progress and more detailed statistics including a rough mesh quality report<a id="hevea_default137"></a>. Below is a screen output of the quality report. </p><pre class="verbatim"><span style="font-size:small">Mesh quality statistics:
+
+  Smallest volume:         0.016741   |  Largest volume:           125.77
+  Shortest edge:            0.30902   |  Longest edge:             12.189
+  Smallest asp.ratio:        1.2927   |  Largest asp.ratio:        16.964
+  Smallest facangle:         15.352   |  Largest facangle:       141.8279
+  Smallest dihedral:          5.587   |  Largest dihedral:       163.9413
+
+  Aspect ratio histogram:
+         &lt; 1.5       :         5      |      6 - 10         :        33
+     1.5 - 2         :       105      |     10 - 15         :         4
+       2 - 2.5       :       228      |     15 - 25         :         1
+     2.5 - 3         :       215      |     25 - 50         :         0
+       3 - 4         :       321      |     50 - 100        :         0
+       4 - 6         :       150      |    100 -            :         0
+  (A tetrahedron's aspect ratio is its longest edge length divided by its
+    smallest side height)
+
+  Face angle histogram:
+      0 -  10 degrees:         0      |     90 - 100 degrees:       637
+     10 -  20 degrees:       122      |    100 - 110 degrees:       131
+     20 -  30 degrees:       556      |    110 - 120 degrees:       101
+     30 -  40 degrees:       700      |    120 - 130 degrees:        44
+     40 -  50 degrees:      1273      |    130 - 140 degrees:         5
+     50 -  60 degrees:      1085      |    140 - 150 degrees:         1
+     60 -  70 degrees:      1129      |    150 - 160 degrees:         0
+     70 -  80 degrees:       871      |    160 - 170 degrees:         0
+     80 -  90 degrees:       506      |    170 - 180 degrees:         0
+
+  Dihedral angle histogram:
+       0 -  5 degrees:         0      |     80 - 110 degrees:      1675
+       5 - 10 degrees:        10      |    110 - 120 degrees:       228
+      10 - 20 degrees:       141      |    120 - 130 degrees:       149
+      20 - 30 degrees:       362      |    130 - 140 degrees:        92
+      30 - 40 degrees:       487      |    140 - 150 degrees:        77
+      40 - 50 degrees:       762      |    150 - 160 degrees:        32
+      50 - 60 degrees:       770      |    160 - 170 degrees:         7
+      60 - 70 degrees:       812      |    170 - 175 degrees:         0
+      70 - 80 degrees:       768      |    175 - 180 degrees:         0
+</span></pre><p>To get the statistics for an existing mesh, run TetGen&nbsp;on that mesh with the <span style="font-family:monospace">-rNEF</span> switches to read the mesh and print the statistics without writing any file<a id="hevea_default138"></a>.</p><p>Moreover, <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-V"><span style="font-family:monospace">-V</span></a> also gives information on the memory usage of TetGen. Below is a screen output of the memory usage report<a id="hevea_default139"></a>.</p><pre class="verbatim"><span style="font-size:small">Memory usage statistics:
+
+  Maximum number of tetrahedra:  45309
+  Maximum number of tet blocks (blocksize = 8188):  6
+  Approximate memory for tetrahedral mesh (bytes):  8,920,640
+  Approximate memory for extra pointers (bytes):  1,775,824
+  Approximate memory for algorithms (bytes):  637,136
+  Approximate memory for working arrays (bytes):  2,092,580
+  Approximate total used memory (bytes):  13,426,180
+</span></pre><p><span style="font-family:monospace">-VV</span> gives more details on the algorithms, and slows down the execution, while <span style="font-family:monospace">-VVV</span> is only useful for debugging.</p>
+<h4 id="sec58" class="subsubsection">4.2.12&nbsp;&nbsp;Memory allocation (-x)</h4>
+<p><a id="hevea_default140"></a>
+<a id="cmd-x"></a></p><p>TetGen&nbsp;allocates memory in blocks. Each block is a chunk of memory allocated once. It stores a number of mesh entities, i.e., vertices, tetrahedra, boundary faces, and boundary edges. TetGen&nbsp;will dynamically allocate new blocks when they are needed. </p><p>By default, each block consists of 8188 tetrahedra. This data size may be too small for generating large meshes. This may slow down the performance of TetGen. The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-x"><span style="font-family:monospace">-x</span></a> switch<a id="hevea_default141"></a> allows users to set the desired number of elements allocated in one block. </p><p>If the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-V"><span style="font-family:monospace">-V</span></a> switch is used, TetGen&nbsp;will report its memory usage, see Section&nbsp;<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-V">4.2.11</a>. A hint to enlarge the block size can be seen from the “Maximum number of tet blocks” (the second line in this report). If this number is large (for example 10000), it is reasonable to enlarge the block size. </p>
+<h4 id="sec59" class="subsubsection">4.2.13&nbsp;&nbsp;Miscellaneous</h4>
+<h4 id="sec60" class="paragraph">-c</h4>
+<p>
+<a id="cmd-c"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-c"><span style="font-family:monospace">-c</span></a><a id="hevea_default142"></a> switch keeps the convex hull of the tetrahedral mesh. By default, TetGen&nbsp;removes all tetrahedra which do not lie in the interior of the PLC (the domain) which may have an arbitrary shape and topology, i.e., it may be non-convex and may contain holes. If the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-c"><span style="font-family:monospace">-c</span></a> switch is used, tetrahedra in the exterior of the PLC are not removed. The union of the mesh elements is a topological ball. </p><p>TetGen&nbsp;assigns to all exterior tetrahedra a region attribute ‘-1’, so that they can be distinguished from the interior tetrahedra.</p>
+<h4 id="sec61" class="paragraph">-S</h4>
+<p>
+<a id="cmd-S"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-S"><span style="font-family:monospace">-S</span></a> switch<a id="hevea_default143"></a> specifies a maximum number of <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Asteinerpoints">Steiner points</a> (points that are not in the input) which are added by mesh refinement to improve the mesh quality. The default is to allow an unlimited number of <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Asteinerpoints">Steiner points</a><a id="hevea_default144"></a>.</p>
+<h4 id="sec62" class="paragraph">-C</h4>
+<p>
+<a id="cmd-C"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-C"><span style="font-family:monospace">-C</span></a> switch<a id="hevea_default145"></a> indicates TetGen&nbsp;to check the consistency of the mesh on finish. If it is specified twice, i.e., <span style="font-family:monospace">-CC</span>, TetGen&nbsp;also checks the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Acdt">constrained Delaunay</a> (for the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-pY"><span style="font-family:monospace">-p</span></a> switch) or conforming Delaunay (for <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-q"><span style="font-family:monospace">-q</span></a>, <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-a"><span style="font-family:monospace">-a</span></a>, or <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-i"><span style="font-family:monospace">-i</span></a>) property of the mesh<a id="hevea_default146"></a>.</p>
+<h4 id="sec63" class="paragraph">-I</h4>
+<p>
+<a id="cmd-I"></a></p><p>With the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-I"><span style="font-family:monospace">-I</span></a> switch<a id="hevea_default147"></a>, TetGen&nbsp;does not use the iteration numbers. It suppresses the output of <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_node"><span style="font-family:monospace">.node</span></a> file, so your input file will not be overwritten. It cannot be used with the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-r"><span style="font-family:monospace">-r</span></a> switch, because that would overwrite your input .ele file. It shouldn’t be used with the <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-q"><span style="font-family:monospace">-q</span></a> switch if one is using a <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_node"><span style="font-family:monospace">.node</span></a> file for input, because no <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html#ff_node"><span style="font-family:monospace">.node</span></a> file is written, so there is no record of any added <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual002.html#sec%3Asteinerpoints">Steiner points</a>.</p>
+<h4 id="sec64" class="paragraph">-T</h4>
+<p>
+<a id="cmd-T"></a></p><p>The <a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html#cmd-T"><span style="font-family:monospace">-T</span></a> switch<a id="hevea_default148"></a> sets a user-defined tolerance used by many computations of TetGen, default is 10<sup>&#8722;8</sup>.</p><p>In principle, the vertices which are used to define a facet of a PLC should be
+exactly coplanar. But this is very hard to achieve in practice due to the
+inconsistent nature of the floating-point format used in computers. </p><p>TetGen&nbsp;accepts facets whose vertices are not exactly but "approximately coplanar". Four points <span style="font-style:italic">a</span>, <span style="font-style:italic">b</span>, <span style="font-style:italic">c</span> and <span style="font-style:italic">d</span> are assumed to be coplanar as long as the ratio <span style="font-style:italic">v</span> / <span style="font-style:italic">l</span><sup>3</sup> is smaller than the given tolerance, where <span style="font-style:italic">v</span> and <span style="font-style:italic">l</span>
+are the volume and the average edge length of the tetrahedron <span style="font-style:italic">abcd</span>,
+respectively.</p><p>To choose a proper tolerance according to the input point set will usually
+reduce the number of adding points and improve the mesh quality.</p>
+<hr>
+<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual004.html"><img src="./CommandLineSwitches_files/previous_motif.gif" alt="Previous"></a>
+<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/index.html"><img src="./CommandLineSwitches_files/contents_motif.gif" alt="Up"></a>
+<a href="http://wias-berlin.de/software/tetgen/1.5/doc/manual/manual006.html"><img src="./CommandLineSwitches_files/next_motif.gif" alt="Next"></a>
+
+
+</body></html>

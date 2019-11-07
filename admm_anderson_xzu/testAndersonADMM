@@ -1,0 +1,11 @@
+#!/bin/bash
+mkdir result
+file="./testParam.txt"
+
+while IFS= read -r line
+do
+
+./beams $line
+done<"$file"
+
+
